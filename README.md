@@ -1,49 +1,147 @@
-# ULP Combo Extractor — by Mohammad SK
+# ULP Combo Extractor Pro — Neon Edition v2 💎
 
-A blazing fast, modern combo extractor for parsing ULP/user:pass and email:pass combos  
-with domain/website filtering, duplicate removal, and beautiful stats.
+
+A blazing-fast, professional combo extractor and cleaner featuring a Neon Cyberpunk UI, a real-time HUD dashboard, and smart parsing logic. Optimized for handling huge lists with precision and speed.
 
 ---
 
-## 🖥️ Extraction Summary
+## ✨ Key Features
 
-| Input File   | Input Size | Total Lines | Output File         | Output Size | Unique Combos | Duplicates | Bad Chars | Time   | Speed      |
-|--------------|------------|-------------|---------------------|-------------|---------------|------------|-----------|--------|------------|
-| mylist.txt   | 41.3 MB    | 534,236     | converted_combo.txt | 9.8 MB      | 352,156       | 180,983    | 1,446,224 | 6.26 s | 82,434 l/s |
+- 🎨 Neon Cyberpunk UI  
+  A stunning, modern terminal interface with TrueColor simulation.
 
-✔ Only valid combos are in your output file.  
-📂 Output: `converted_combo.txt`
+- ⚡ Ultra Performance  
+  Powered by a pre-compiled regex engine for maximum speed (MB/s processing).
+
+- 🧠 Smart Parsing  
+  Automatically detects delimiters (`:`, `;`, `|`) and handles complex formats like `url:port:user:pass`.
+
+- 📂 Batch Mode  
+  Process an entire folder of text files automatically.
+
+- 📊 Live HUD  
+  Real-time dashboard showing speed, progress, ETA, and validity stats.
+
+- 🔒 Security Analytics  
+  Analyzes password complexity (Numeric vs Alpha vs Mixed).
+
+- 🛠 Interactive Extraction  
+  Optionally extract top domains (Gmail, Yahoo, etc.) into separate files after processing.
+
+- 🧹 Auto-Sorting & Cleaning  
+  Automatically removes duplicates, bad characters, and garbage data.
+
+---
+
+## 🖥️ Dashboard Preview
+
+PROCESSING...        File 1/5
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━  45%
+
+Valid: 313,476    Dups: 102,496    Bad: 14,713
+
+Speed: 12.5 MB/s  Rate: 82,434 L/s ETA: 12s
 
 ---
 
 ## ⚡ How to Use
 
-1. **Download**
-   - Download `ulp_extractor.py`
-   - (Optionally) Place your combo file (e.g. `mylist.txt`) in the same folder
+### Prerequisites
+- Python 3.x
 
-2. **Run**
-   ```bash
-   python ulp_extractor.py
+### Run the Script
+```bash
+python ulp_extractor.py
+```
 
-3. **Follow prompts**
-   - Select your combo input file (supports `.txt`)
-   - Optionally filter combos by any domain/website/keyword (e.g. `.ir`, `netflix`)
-   - Wait for extraction (progress & live stats)
-   - When finished, see your `converted_combo.txt` — only clean combos!
-## 📄 Output
+Follow the Neon UI:
 
-- **converted_combo.txt:** Final, cleaned, unique combos  
-  (Format: `username:password` or `email:password`)
+1. Select Input: Choose a single `.txt` file OR enter a folder path for Batch Mode.
+2. Filter (Optional): Enter a keyword (e.g., `.ir`, `netflix`) to extract specific lines, or press Enter to extract everything.
+3. Processing: Watch the live HUD as it cleans and sorts your list.
+4. Post-Process: The tool will show top domains found. Type `y` to save them into separate files.
 
 ---
 
-## 🧑‍💻 Example Input
+## 📄 Output Formats
 
-- https://site.com/:user1:pass1
-- android://app.domain/:user2:pass2
-- user3:pass3
-- mail4@example.com:12345
+- Main Output: `FILENAME_extracted.txt` (Sorted & Unique) — format: `user:pass`
+- Optional Domain Files: `FILENAME_extracted_gmail_com.txt`, `FILENAME_extracted_yahoo_com.txt`, etc.
 
-*Only the lines in `username:password` or `email:password` format will be accepted as valid combos.*
+---
 
+## 🔎 Input Handling Examples
+
+| Input Line                                | Result             | Status        |
+|------------------------------------------:|-------------------:|---------------|
+| `user:pass`                               | `user:pass`        | ✅ Valid       |
+| `email@domain.com:password`               | `email@domain.com:password` | ✅ Valid |
+| `https://site.com:8080:user:pass`         | `user:pass`        | ✅ Smart Parsed|
+| `user;pass`                               | `user:pass`        | ✅ Delimiter Fixed |
+| `` `user\n\npass` ``                      | `user:pass`        | ✅ Cleaned     |
+| `garbage_data_line`                       | (Removed)          | ❌ Invalid     |
+| `user:null`                               | (Removed)          | ❌ Bad Syntax  |
+
+---
+
+## 🧾 Security Analytics
+
+- Classifies passwords into:
+  - Numeric-only
+  - Alpha-only
+  - Mixed (Alpha + Numeric + Symbols)
+- Reports top domains and basic strength distribution for quick insights.
+
+---
+
+## 🗂 Batch Mode
+
+Point the script at a folder to process every `.txt` file inside. Outputs are generated per input file preserving the filename prefix:
+```
+input/
+  ├─ file1.txt  -> file1_extracted.txt
+  ├─ file2.txt  -> file2_extracted.txt
+  └─ ...
+```
+
+---
+
+## ⚙️ Configuration & Options
+
+- Interactive prompts guide actions (filtering, domain saving).
+- Auto-deduplication and sorting are enabled by default.
+- Smart parsing automatically normalizes delimiters and strips common noise characters.
+- You can disable interactive prompts for automated pipelines (see script flags or optional arguments in the tool implementation).
+
+---
+
+## 📝 Changelog
+
+### v2 — Neon Edition (EN)
+- New Theme: "Neon Cyberpunk" design with TrueColor simulation.
+- HUD Dashboard: Real-time Heads-Up Display for speed & ETA.
+- Smart Parsing: Added support for delimiters `:`, `;`, `|`.
+- Batch Mode: Process entire folders at once.
+- Security Analytics: Password complexity stats.
+- Interactive Workflow: Optional saving of top domains.
+
+### نسخه 2 — نئون ادیشن (FA)
+- تم جدید: طراحی "سایبرپانک نئونی" با رابط کاربری جذاب.
+- داشبورد HUD: نمایش زنده سرعت، پیشرفت و زمان باقی‌مانده.
+- پارس هوشمند: پشتیبانی از جداکننده‌های مختلف (`:`, `;`, `|`) و فرمت‌های پیچیده.
+- حالت دسته‌ای: قابلیت پردازش همزمان تمام فایل‌های یک پوشه.
+- آنالیز امنیتی: نمایش آمار کیفیت پسوردها.
+- خروجی تعاملی: امکان ذخیره جداگانه دامنه‌های مهم (مثل جیمیل) در پایان کار.
+
+---
+
+## ❤️ Credits
+
+Developed with love by Mohammad SK
+
+---
+
+## ⚠️ Legal & Responsible Use
+
+This tool is intended for lawful, ethical, and authorized use only. Do not use it to process data you do not have explicit permission to handle. The author is not responsible for misuse.
